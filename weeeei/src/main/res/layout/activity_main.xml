@@ -36,11 +36,10 @@
         android:layout_height="match_parent"
         android:visibility="gone">
 
-        <EditText
-            android:id="@+id/edit_user_name"
+        <ListView
+            android:id="@+id/list_notify_users"
             android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:hint="Weeei" />
+            android:layout_height="match_parent"></ListView>
 
     </LinearLayout>
 

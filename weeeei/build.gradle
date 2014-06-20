@@ -1,7 +1,12 @@
 apply plugin: 'android'
 
+repositories {
+    mavenCentral()
+}
+
 dependencies {
     compile files('libs/Parse-1.5.1.jar')
+    compile 'com.google.code.gson:gson:2.2.4'
 }
 
 android {
