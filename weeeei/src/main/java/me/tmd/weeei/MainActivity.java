@@ -1,6 +1,7 @@
 package me.tmd.weeei;
 
 import android.app.Activity;
+import android.app.DialogFragment;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -95,6 +96,15 @@ public class MainActivity extends Activity {
         final ArrayList<String> items = restoreNotifyUsers();
 
         LayoutInflater inflater = LayoutInflater.from(getApplicationContext());
+        View header = inflater.inflate(R.layout.list_row_notify_user_header, null);
+        header.findViewById(R.id.btn_share).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DialogFragment dialog = new SocialShareDialogFragment();
+                dialog.show(getFragmentManager(), "Share");
+            }
+        });
+
         View footer = inflater.inflate(R.layout.list_row_notify_user_footer, null);
         final EditText editBox = (EditText) footer.findViewById(R.id.edit_notify_user);
         final Button editButton = ((Button) footer.findViewById(R.id.btn_edit));
@@ -119,7 +129,13 @@ public class MainActivity extends Activity {
             }
         });
 
-        mListViewNotifyUser.addFooterView(footer);
+        if (mListViewNotifyUser.getHeaderViewsCount() == 0) {
+            mListViewNotifyUser.addHeaderView(header);
+        }
+
+        if (mListViewNotifyUser.getFooterViewsCount() == 0) {
+            mListViewNotifyUser.addFooterView(footer);
+        }
 
         mListViewNotifyUser.setAdapter(new NotifyUserAdaper(getApplicationContext(), items));
 
