@@ -94,6 +94,7 @@ public class MainActivity extends Activity {
         findViewById(R.id.wrapper_main).setVisibility(View.VISIBLE);
 
         final ArrayList<String> items = restoreNotifyUsers();
+        final NotifyUserAdaper adapter = new NotifyUserAdaper(getApplicationContext(), items);
 
         LayoutInflater inflater = LayoutInflater.from(getApplicationContext());
         View header = inflater.inflate(R.layout.list_row_notify_user_header, null);
@@ -113,6 +114,7 @@ public class MainActivity extends Activity {
             public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
                 if (keyEvent.getKeyCode() == KeyEvent.KEYCODE_ENTER) {
                     items.add(textView.getText().toString());
+                    adapter.notifyDataSetChanged();
                     addUserNameStore(items);
                     editBox.setVisibility(View.GONE);
                     editBox.setText("");
@@ -137,12 +139,12 @@ public class MainActivity extends Activity {
             mListViewNotifyUser.addFooterView(footer);
         }
 
-        mListViewNotifyUser.setAdapter(new NotifyUserAdaper(getApplicationContext(), items));
+        mListViewNotifyUser.setAdapter(adapter);
 
         mListViewNotifyUser.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                pushNotify(items.get(i));
+                pushNotify(items.get(i - 1));
             }
         });
     }
