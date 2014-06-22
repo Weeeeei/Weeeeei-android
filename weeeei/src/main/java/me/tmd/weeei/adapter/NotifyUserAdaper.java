@@ -1,4 +1,4 @@
-package me.tmd.weeei;
+package me.tmd.weeei.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,6 +8,8 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import java.util.List;
+
+import me.tmd.weeei.R;
 
 /**
  * Created by takatoshi-maeda on 2014/06/21.

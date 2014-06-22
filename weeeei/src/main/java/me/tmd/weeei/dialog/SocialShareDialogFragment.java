@@ -1,4 +1,4 @@
-package me.tmd.weeei;
+package me.tmd.weeei.dialog;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
